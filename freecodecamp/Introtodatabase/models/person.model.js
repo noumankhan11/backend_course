@@ -1,8 +1,26 @@
-const mongoose = require("mongoose");
+let mongoose = require("mongoose");
 
-const personSchema = mongoose.Schema({
-  name: String,
+const server = "127.0.0.1:27017"; //
+const database = "fcc-Mail"; //
+
+mongoose
+  .connect(`mongodb://${server}/${database}`)
+  .then(() => {
+    console.log("Database connection successful");
+  })
+  .catch((err) => {
+    console.error("Database connection error", err);
+  });
+
+const personSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   age: Number,
+  favoriteFoods: [String],
 });
 
-module.exports = mongoose.model("person", personSchema);
+const Person = mongoose.model("Person", personSchema);
+
+module.exports = Person;

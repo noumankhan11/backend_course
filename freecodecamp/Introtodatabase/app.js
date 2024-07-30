@@ -1,14 +1,13 @@
-const Database = require("./src/database.js");
 const express = require("express");
 const app = express();
+const personModel = require("./models/person.model.js");
 
 // Database._connect();
 // const mongoose = require('mongoose');
 // mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 app.get("/", function (req, res) {
-  Database._connect();
-  res.send("database connected succecfully");
+  res.send("hello Schema");
 });
 
 app.listen(3000, () => {
